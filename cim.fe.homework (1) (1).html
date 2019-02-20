@@ -2,7 +2,7 @@
 <head>
     <style>
         body { background: #fff; padding: 20px; }
-        .global header { font-family: sans-serif; }
+        header { font-family: sans-serif; }
         .your-answer { border: 2px inset; background-color: #eee; padding: 5px; font-family: sans-serif; }
 
         /* CSS / HTML Question #2 */
@@ -76,8 +76,11 @@
             }
         }
     </style>
-    <script>
-        document.getElementsByClassName("blue").text-color = "darkblue";
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) { 
+                document.getElementsByClassName('blue')[0].style.color = 'darkblue';
+        })
+        
     </script>
 </head>
 <body>
@@ -217,7 +220,7 @@
                     1. Explain why the JavaScript code in the &lt;head&gt; element is failing to achieve this.<br/>
                     2. Edit the JavaScript code to achieve this, leaving it in the &lt;head&gt;.
                 </div>
-                <div class="your-answer"><!-- replace this comment with your answer to part 1 of this question --></div>
+                <div class="your-answer">The problem with the code was that it was calling a reference to the classname "blue" before it was rendered in the DOM. Adding the event listener to listen for the DOM to be fully loaded allows for the class to be referenced after it is rendered. Also using getElementsByClassName returns an array of elements so you need to specify the index of the element that you would like to change. In this case the index would be 0.</div>
             </div>
 
             <hr>
@@ -225,11 +228,12 @@
             <div>
                 <h1>Question 2:</h1>
                 <script>
-                    var x = {};
+                    var x = [];
                     x[0] = 'a';
                     x[1] = 'b';
                     x[2] = 'c';
                     var y = x.pop();
+                    console.log(y)
                 </script>
                 <div>
                     1. Explain why the above throws an error.<br/>
