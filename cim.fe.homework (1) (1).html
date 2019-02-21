@@ -250,13 +250,14 @@
                     var obj = {
                         value: 1,
                         increment: function() {
-                        //Your code goes here
+                            
                         }
                     }
                     console.log (obj.increment() == 2);
                     console.log (obj.increment() == 3);
                     console.log (obj.increment() == 4);
                 </script>
+                This problem really tripped me up. I've never set the value of an object key to a function before. I've only ever mutated the object from outside of the object itself. I've been searching around but I can't seem to figure this one out. I would love to figure out how this works.
             </div>
 
             <hr>
@@ -265,7 +266,37 @@
                 <h1>Question 4:</h1>
                 <div>In Javascript, programatically list all of the prime numbers from 1 to 100.</div>
                 <script>
-                    // your code answer goes here
+                    function isPrime(num) {
+                        // Check if the number is divisable by 2
+                        if (num % 2 == 0) {
+                        // If it is its not prime
+                            return false;
+                        }
+
+                        let n = Math.sqrt(num);
+                        // Check if number is divisable by any others
+                        for ( var i = 3; i <= n; i += 2 ) {
+                            if ( num % i === 0 ) {
+                                return false;
+                            }
+                        }
+
+                        return true;
+                    }
+
+                    // Use isPrime Method to find all the prime numbers up to n
+                    function print(n) {
+                        var arr = [2];
+                        for ( var i = 3; i < n; i+=2 ) {
+                            if ( isPrime(i) ) {
+                                arr.push(i);
+                            }
+                        }
+                        console.log(arr);
+                    }
+
+                    // Call print function set n to 100
+                    print(100);
                 </script>
                 <div id="prime" class="your-answer"><!-- your code should output the prime numbers here --></div>
             </div>
